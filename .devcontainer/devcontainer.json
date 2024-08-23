@@ -12,6 +12,7 @@
     },
     
     "mounts": [
+        "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
         "source=C:\\docker_share,target=/mounted_data,type=bind,consistency=cached"
     ],
 
@@ -24,9 +25,10 @@
 	//"forwardPorts": [],
 
     "remoteUser": "root",
-    "postCreateCommand": [
-        "nvidia-smi"
-    ],
+    "postCreateCommand": {
+        "git-config": "git config --global core.autocrlf input",
+        "nvidia-check": "nvidia-smi"
+    },
 
 	// Configure tool-specific properties.
     "customizations": {
@@ -40,7 +42,10 @@
                 "ms-toolsai.jupyter-renderers",
                 "ms-toolsai.vscode-jupyter-slideshow",
                 "ms-python.vscode-pylance"
-            ]
+            ],
+            "settings": {"files.eol": "\n"}
         }
     }
+    
+
 }
